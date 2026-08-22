@@ -110,7 +110,7 @@
     '</div>' +
     '<div style="font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#e8eefb;padding-top:12px;">Collin Pike</div>' +
     '<div style="font-family:Consolas,\'Courier New\',monospace;font-size:12px;color:#7f8ea8;padding-top:6px;letter-spacing:1px;">' +
-      'ex-KJ4AXB &nbsp;/&nbsp; KJ4AXB&#47;VP9 &nbsp;&middot;&nbsp; Parks on the Air activator' +
+      'ex-KJ4AXB &nbsp;/&nbsp; KJ4AXB&#47;VP9 &nbsp;&middot;&nbsp; EM83vk &nbsp;&middot;&nbsp; Amateur Extra' +
     '</div>' +
   '</div>' +
 
@@ -151,12 +151,16 @@
             specRow('Power',       'Jackery Explorer 300') +
             specRow('Interface',   'SignaLink USB &#47; DigiRig') +
             specRow('Computer',    'Lenovo ThinkPad T440p') +
-            specRow('Case',        'Apache 4800', true) +
+            specRow('Case',        'Apache 4800') +
+            specRow('QTH',         'Augusta, GA') +
+            specRow('ITU &#47; CQ', '8 &#47; 5', true) +
           '</table>' +
         '</td>' +
         '<td width="48%" valign="top" style="padding-left:22px;border-left:1px solid #1c2540;">' +
           heading('Operating') +
           '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
+            specRow('Class',        'Amateur Extra') +
+            specRow('Grid',         'EM83vk') +
             specRow('Modes',        'FT8, digital, some SSB') +
             specRow('Bands',        '10 &ndash; 40 m') +
             specRow('Software',     'WSJT-Z, HRD') +

@@ -6,7 +6,7 @@
 <title>WE4RR — Collin Pike | Amateur Radio Station, Augusta GA</title>
 <meta name="description" content="WE4RR (ex-KJ4AXB) — Collin Pike, Augusta, Georgia. Portable digital operator and Parks on the Air activator running an FT-897D and Alpha Antenna MagLoop. Live POTA statistics, station details, and QSL information.">
 <meta name="author" content="Collin Pike, WE4RR">
-<link rel="canonical" href="https://we4rr.github.io/">
+<link rel="canonical" href="https://collinpikeusa.github.io/we4rr.github.io/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="WE4RR — Collin Pike | Amateur Radio Station">
@@ -43,7 +43,9 @@
       <a href="#about">About</a>
       <a href="#station">Station</a>
       <a href="#pota">POTA</a>
+      <a href="#photos">Photos</a>
       <a href="#awards">Awards</a>
+      <a href="#qslcards">Cards</a>
       <a href="#qsl">QSL</a>
       <a href="qrz.html">QRZ Page</a>
     </nav>
@@ -76,7 +78,7 @@
 
     <h1 class="callsign">WE4RR</h1>
     <p class="hero__name">Collin Pike</p>
-    <p class="hero__qth">ex-KJ4AXB &nbsp;/&nbsp; KJ4AXB&#47;VP9 &nbsp;&middot;&nbsp; Parks on the Air activator</p>
+    <p class="hero__qth">ex-KJ4AXB &nbsp;/&nbsp; KJ4AXB&#47;VP9 &nbsp;&middot;&nbsp; EM83vk &nbsp;&middot;&nbsp; Parks on the Air activator</p>
 
     <p class="hero__lede">
       A portable, digital-first station. Most of my operating happens out of the trunk of a car
@@ -85,6 +87,7 @@
     </p>
 
     <div class="tags">
+      <span class="tag tag--amber">Amateur Extra</span>
       <span class="tag tag--amber">FT8 &amp; digital modes</span>
       <span class="tag">POTA</span>
       <span class="tag">Portable / QRP-ish</span>
@@ -168,6 +171,8 @@
           <div><dt>Previous</dt><dd>KJ4AXB</dd></div>
           <div><dt>DX portable</dt><dd>KJ4AXB&#47;VP9</dd></div>
           <div><dt>QTH</dt><dd>Augusta, GA</dd></div>
+          <div><dt>Grid</dt><dd>EM83vk</dd></div>
+          <div><dt>Class</dt><dd>Amateur Extra</dd></div>
           <div><dt>ITU &#47; CQ</dt><dd>8 &#47; 5</dd></div>
           <div><dt>Primary mode</dt><dd>FT8 &#47; digital</dd></div>
           <div><dt>Bands</dt><dd>10&ndash;40 m</dd></div>
@@ -298,8 +303,40 @@
   </div>
 </section>
 
+<!-- ============ ACTIVATION PHOTOS ============ -->
+<!-- Photos live in assets/photos/activations/ and are listed in
+     assets/photos/photos.json. This whole section removes itself
+     when there are no photos. -->
+<section class="section section--alt" id="photos">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="section__kicker">From the field</p>
+      <h2 class="section__title">Activation photos</h2>
+      <p class="section__sub">Picnic tables, tripods, and the occasional rain shower &mdash; the places the loop has been set up.</p>
+    </div>
+
+    <div class="carousel reveal" id="actCarousel" aria-roledescription="carousel" aria-label="Activation photos">
+      <div class="carousel__stage"></div>
+      <button class="carousel__nav carousel__nav--prev" type="button" data-dir="prev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel__nav carousel__nav--next" type="button" data-dir="next" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div class="carousel__bar">
+        <button class="carousel__play" type="button" aria-label="Pause slideshow">
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="carousel__dots"></div>
+        <span class="carousel__count"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ AWARDS ============ -->
-<section class="section section--alt" id="awards">
+<section class="section" id="awards">
   <div class="wrap">
     <div class="section__head reveal">
       <p class="section__kicker">Recognition</p>
@@ -313,6 +350,19 @@
   </div>
 </section>
 
+<!-- ============ QSL CARD COLLECTION ============ -->
+<!-- Cards live in assets/photos/qsl/. Section removes itself when empty. -->
+<section class="section section--alt" id="qslcards">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="section__kicker">The collection</p>
+      <h2 class="section__title">QSL cards</h2>
+      <p class="section__sub">Cards that have arrived over the years. Click any one to see it full size.</p>
+    </div>
+    <div class="qslwall reveal" id="qslWall"></div>
+  </div>
+</section>
+
 <!-- ============ QSL ============ -->
 <section class="section" id="qsl">
   <div class="wrap">
@@ -321,6 +371,23 @@
       <h2 class="section__title">QSL information</h2>
       <p class="section__sub">Every contact I make is uploaded to Logbook of the World. Paper cards are always welcome and always answered.</p>
     </div>
+
+    <!-- My own QSL card. Save the image as assets/img/qsl-card-we4rr.jpg
+         (.png / .webp also work). This block hides itself if the file is absent. -->
+    <figure class="mycard reveal" id="myCard" hidden>
+      <div class="mycard__frame">
+        <img src="" alt="WE4RR QSL card: alphabet blocks spelling WE4 beside a railroad crossing sign, over a green and cream diesel locomotive number 6147 crossing a trestle through autumn woods">
+      </div>
+      <figcaption class="mycard__side">
+        <h3>My card</h3>
+        <p>
+          WE4<strong style="color:var(--amber)">RR</strong> &mdash; the callsign asked for a railroad, so it got one.
+          Rock Island E-unit 6147 on the trestle, alphabet blocks, and a crossing buck.
+          If you work me, this is what lands in your mailbox.
+        </p>
+        <p class="mycard__credit">Graphics by KJ4AXF &nbsp;&middot;&nbsp; click to enlarge</p>
+      </figcaption>
+    </figure>
 
     <div class="qsl reveal">
       <article class="card qsl__card">
@@ -372,5 +439,6 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/gallery.js"></script>
 </body>
 </html>

@@ -20,33 +20,47 @@ is unreachable, the numbers baked into the HTML are shown instead and a small no
 
 ## Publishing to GitHub Pages
 
-1. Create a repository on GitHub. Naming it **`we4rr.github.io`** gives you
-   `https://we4rr.github.io/`; any other name gives you
-   `https://<user>.github.io/<repo>/`.
+The remote is already set to `git@github.com:collinpikeusa/we4rr.github.io.git`.
 
-2. Push this directory:
+```
+git push -u origin main
+```
 
-   ```
-   git remote add origin https://github.com/<user>/<repo>.git
-   git push -u origin main
-   ```
-
-3. On GitHub: **Settings → Pages → Build and deployment**
-   Source: *Deploy from a branch* · Branch: `main` · Folder: `/ (root)` · Save.
-
-4. Give it a minute, then load the URL Pages shows you.
+Then on GitHub: **Settings → Pages → Build and deployment**
+Source: *Deploy from a branch* · Branch: `main` · Folder: `/ (root)` · Save.
 
 `.nojekyll` is included so GitHub serves the files as-is.
 
-### If you use a project repo (not `<user>.github.io`)
+### A note on the repository name
 
-Update the canonical URL in `index.html`:
+GitHub only treats a repo as a *user site* — served from the bare root — when it is
+named exactly `<username>.github.io`. This repo is `we4rr.github.io` owned by
+`collinpikeusa`, which does not match, so it is published as a **project site**:
+
+```
+https://collinpikeusa.github.io/we4rr.github.io/
+```
+
+To get a clean root URL instead, rename the repo to **`collinpikeusa.github.io`**
+(Settings → General → Repository name). It would then serve from:
+
+```
+https://collinpikeusa.github.io/
+```
+
+Either way, update the canonical URL near the top of `index.html` to match:
 
 ```html
-<link rel="canonical" href="https://<user>.github.io/<repo>/">
+<link rel="canonical" href="https://collinpikeusa.github.io/we4rr.github.io/">
 ```
 
 Everything else uses relative paths and needs no change.
+
+### Custom domain
+
+If you ever buy a domain, add a file called `CNAME` containing just the hostname
+(e.g. `we4rr.radio`), point a DNS `CNAME` record at `collinpikeusa.github.io`, and
+set it under Settings → Pages.
 
 ## Refreshing the QRZ bio
 
@@ -67,14 +81,47 @@ Everything is hand-editable HTML with comments marking each section.
 - **Live data handling** → `assets/js/main.js`
 - **QRZ bio template** → `assets/js/qrz.js`
 
-### Things you may want to fill in
+## Photos
 
-A couple of fields could not be verified from public sources and use placeholders:
+Three separate things, three separate places.
 
-- **License class** — not shown anywhere in `index.html` yet; add a row to the
-  "Station data" list if you want it.
-- **Grid square** — your POTA profile has no grid set. Add one to the same list.
-- **QSL card image** — drop a photo in `assets/img/` and reference it wherever you like.
+### 1. Your own QSL card
+
+Save the image as **`assets/img/qsl-card-we4rr.jpg`** (`.png` and `.webp` also work).
+It appears at the top of the QSL section, and clicking it opens it full size.
+If the file is not there, the block hides itself and nothing looks broken.
+
+### 2. Activation photos → rotating carousel
+
+Drop images into **`assets/photos/activations/`**. They become an auto-rotating
+slideshow with arrows, dots, a pause button, keyboard arrows, and swipe on touch.
+
+### 3. QSL cards you have received → gallery
+
+Drop images into **`assets/photos/qsl/`**. They become a grid; clicking one opens
+a lightbox you can arrow through.
+
+### How the folders become a gallery
+
+There is no server to list a directory, so the file list lives in
+`assets/photos/photos.json`. You do **not** maintain it by hand — a GitHub Action
+(`.github/workflows/photos.yml`) rebuilds it on every push that touches a photo
+folder. Add photos through the GitHub web UI if you like; it still works.
+
+Working locally and want to see them before pushing:
+
+```
+python3 tools/build-photo-manifest.py
+```
+
+Naming files like `2026-08-02_US-2913_Sesquicentennial-State-Park.jpg` gets you a
+date, a clickable park link, and a title for free. See `assets/photos/README.md`
+for the details and for how to add your own captions — captions you write are
+never overwritten by a rebuild.
+
+Both photo sections **remove themselves entirely** when they have no images, so the
+site never shows an empty shell. While previewing on `localhost` you get a dashed
+"drop photos here" placeholder instead; visitors never see it.
 
 ## Local preview
 

@@ -1,0 +1,39 @@
+name: Rebuild photo manifest
+
+# Drop images into assets/photos/activations/ or assets/photos/qsl/ — including
+# straight through the GitHub web UI — and this regenerates photos.json for you.
+on:
+  push:
+    paths:
+      - 'assets/photos/activations/**'
+      - 'assets/photos/qsl/**'
+      - 'tools/build-photo-manifest.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: photo-manifest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild photos.json
+        run: python3 tools/build-photo-manifest.py
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- assets/photos/photos.json; then
+            echo "photos.json already up to date"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/photos/photos.json
+          git commit -m "Rebuild photo manifest [skip ci]"
+          git push
