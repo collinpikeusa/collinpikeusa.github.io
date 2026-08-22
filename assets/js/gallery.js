@@ -71,7 +71,10 @@
 
     var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
 
-    if (items.length > 1) {
+    // A dot per item stops being navigation and starts being a wall once there
+    // are dozens; past the cap the counter and arrows carry the load instead.
+    var DOT_CAP = 15;
+    if (items.length > 1 && items.length <= DOT_CAP) {
       dotsEl.innerHTML = items.map(function (it, i) {
         return '<button class="dot' + (i === 0 ? ' is-active' : '') + '" type="button" ' +
                'aria-label="Show item ' + (i + 1) + '"></button>';
@@ -224,7 +227,7 @@
       this.i = (i + this.items.length) % this.items.length;
       var it = this.items[this.i];
       this.img.src = this.resolve(it);
-      this.img.alt = it.alt || ('QSL card from ' + (it.callsign || it.file || ''));
+      this.img.alt = it.alt || (it.callsign ? 'QSL card from ' + it.callsign : 'QSL card');
       this.cap.textContent = (it.callsign || it.title || '') +
         (it.caption ? '  ·  ' + it.caption : '') +
         (this.items.length > 1 ? '   ·   ' + (this.i + 1) + ' / ' + this.items.length : '');
@@ -315,9 +318,10 @@
       Carousel($('qslCarousel'), qsls, {
         src: function (it) { return QSL_DIR + encodeURIComponent(it.file); },
         caption: function (it) {
+          // Unlabelled cards show no title rather than a filename.
           return {
-            title: it.callsign || it.file,
-            alt: 'QSL card from ' + (it.callsign || it.file),
+            title: it.callsign || '',
+            alt: it.callsign ? ('QSL card from ' + it.callsign) : 'QSL card',
             meta: [], note: it.caption
           };
         },

@@ -77,10 +77,18 @@ def parse_activation(filename):
     return entry
 
 
+# A real amateur callsign: optional prefix chars, a digit, then 1-4 letters.
+# Guards against turning "card-001.jpg" into a callsign labelled "CARD".
+CALL_RE = re.compile(r"^[A-Z0-9]{1,3}[0-9][A-Z]{1,4}$")
+
+
 def parse_qsl(filename):
     stem = os.path.splitext(filename)[0]
-    call = re.split(r"[_\-\s]", stem)[0].upper()
-    return {"file": filename, "callsign": call, "caption": ""}
+    token = re.split(r"[_\-\s]", stem)[0].upper()
+    entry = {"file": filename, "caption": ""}
+    if CALL_RE.match(token) and any(c.isalpha() for c in token):
+        entry["callsign"] = token
+    return entry
 
 
 def merge(existing, found, parser, key="file"):
@@ -112,7 +120,7 @@ def main():
 
     # Newest activation first when a date is known; undated ones fall to the end.
     acts.sort(key=lambda e: e.get("date") or "0000-00-00", reverse=True)
-    qsls.sort(key=lambda e: e.get("callsign") or e.get("file", ""))
+    qsls.sort(key=lambda e: (e.get("callsign") is None, e.get("callsign") or e.get("file", "")))
 
     for a in acts:
         if a.get("date"):
