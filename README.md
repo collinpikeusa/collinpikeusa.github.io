@@ -3,14 +3,11 @@
 A static site for **WE4RR** (Collin Pike, ex-KJ4AXB) — Augusta, Georgia.
 No build step, no dependencies, no framework. Plain HTML, CSS, and vanilla JS.
 
-| Page | What it is |
-|---|---|
-| `index.html` | The main site — about, station, POTA, awards, QSL |
-| `qrz.html` | Generates paste-ready HTML for the QRZ.com bio |
+The site is a single page: `index.html`.
 
 ## Live data
 
-Both pages fetch `https://api.pota.app/profile/WE4RR` in the browser. That endpoint
+The page fetches `https://api.pota.app/profile/WE4RR` in the browser. That endpoint
 sends `Access-Control-Allow-Origin: *`, so it works from GitHub Pages with no proxy
 and no API key.
 
@@ -47,14 +44,6 @@ If you buy a domain, add a file called `CNAME` containing just the hostname
 (e.g. `we4rr.radio`), point a DNS `CNAME` record at `collinpikeusa.github.io`, and
 set it under Settings → Pages.
 
-## Refreshing the QRZ bio
-
-QRZ cannot run JavaScript in a bio, so those numbers are frozen when you paste.
-Open `qrz.html`, click **Copy HTML**, and paste into QRZ's bio editor in
-**source mode**. Repeat whenever you want the figures brought up to date.
-
-The template is a single `build()` function in `assets/js/qrz.js` — the prose is
-plain text in there, so edit it directly.
 
 ## Editing content
 
@@ -64,7 +53,6 @@ Everything is hand-editable HTML with comments marking each section.
 - **Colours, spacing, typography** → the `:root` block at the top of `assets/css/style.css`
   (a `[data-theme="light"]` block right below it holds the light palette)
 - **Live data handling** → `assets/js/main.js`
-- **QRZ bio template** → `assets/js/qrz.js`
 
 ## Photos
 

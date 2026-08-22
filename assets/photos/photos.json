@@ -1,5 +1,28 @@
 {
-  "activations": [],
+  "activations": [
+    {
+      "file": "2023-04-23_US-1595_Sandy-Point-State-Park.jpg",
+      "date": "2023-04-23",
+      "ref": "US-1595",
+      "title": "Sandy Point State Park",
+      "dateLabel": "Apr 23, 2023"
+    },
+    {
+      "file": "US-0334_Patuxent-Research-Refuge.jpg",
+      "ref": "US-0334",
+      "title": "Patuxent Research Refuge"
+    },
+    {
+      "file": "US-1617_Fort-Mott-State-Park.jpg",
+      "ref": "US-1617",
+      "title": "Fort Mott State Park"
+    },
+    {
+      "file": "US-4366_Auburn-Valley-State-Park.jpg",
+      "ref": "US-4366",
+      "title": "Auburn Valley State Park"
+    }
+  ],
   "qsl": [
     {
       "file": "card-001.jpg",
