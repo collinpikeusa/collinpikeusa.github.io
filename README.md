@@ -20,7 +20,14 @@ is unreachable, the numbers baked into the HTML are shown instead and a small no
 
 ## Publishing to GitHub Pages
 
-The remote is already set to `git@github.com:collinpikeusa/we4rr.github.io.git`.
+The site is served from **`https://collinpikeusa.github.io/`**.
+
+That root URL only works while the repository is named exactly
+`collinpikeusa.github.io` — GitHub reserves bare-root hosting for a repo whose name
+matches the account name. Any other name (including `we4rr.github.io`) is treated as
+a *project site* and lands at `https://collinpikeusa.github.io/<repo-name>/` instead.
+
+To publish:
 
 ```
 git push -u origin main
@@ -31,34 +38,12 @@ Source: *Deploy from a branch* · Branch: `main` · Folder: `/ (root)` · Save.
 
 `.nojekyll` is included so GitHub serves the files as-is.
 
-### A note on the repository name
-
-GitHub only treats a repo as a *user site* — served from the bare root — when it is
-named exactly `<username>.github.io`. This repo is `we4rr.github.io` owned by
-`collinpikeusa`, which does not match, so it is published as a **project site**:
-
-```
-https://collinpikeusa.github.io/we4rr.github.io/
-```
-
-To get a clean root URL instead, rename the repo to **`collinpikeusa.github.io`**
-(Settings → General → Repository name). It would then serve from:
-
-```
-https://collinpikeusa.github.io/
-```
-
-Either way, update the canonical URL near the top of `index.html` to match:
-
-```html
-<link rel="canonical" href="https://collinpikeusa.github.io/we4rr.github.io/">
-```
-
-Everything else uses relative paths and needs no change.
+If you ever rename the repository, update the canonical URL near the top of
+`index.html` to match. Everything else uses relative paths and needs no change.
 
 ### Custom domain
 
-If you ever buy a domain, add a file called `CNAME` containing just the hostname
+If you buy a domain, add a file called `CNAME` containing just the hostname
 (e.g. `we4rr.radio`), point a DNS `CNAME` record at `collinpikeusa.github.io`, and
 set it under Settings → Pages.
 
