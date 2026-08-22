@@ -590,33 +590,6 @@ td.num { text-align: right; font-family: var(--font-mono); color: var(--amber); 
 .carousel__play[data-paused="true"] .icon-pause { display: none; }
 .carousel__play[data-paused="true"] .icon-play  { display: block; }
 
-/* ---------- QSL wall ---------- */
-.qslwall {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-}
-.qslcard {
-  position: relative; display: block; padding: 0; cursor: zoom-in;
-  background: var(--panel); border: 1px solid var(--line);
-  border-radius: var(--radius); overflow: hidden;
-  aspect-ratio: 11 / 7;
-  transition: transform .22s cubic-bezier(.22,1,.36,1), border-color .22s, box-shadow .22s;
-}
-.qslcard:hover {
-  transform: translateY(-4px) rotate(-.5deg);
-  border-color: color-mix(in srgb, var(--amber) 45%, var(--line));
-  box-shadow: var(--shadow);
-}
-.qslcard img { width: 100%; height: 100%; object-fit: cover; }
-.qslcard__tag {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 26px 13px 10px;
-  background: linear-gradient(to top, rgba(4,7,12,.92), transparent);
-  font-family: var(--font-mono); font-size: .8rem; font-weight: 700;
-  letter-spacing: .1em; color: #fff; text-align: left;
-}
-
 /* ---------- Lightbox ---------- */
 .lightbox {
   position: fixed; inset: 0; z-index: 300;
@@ -698,4 +671,76 @@ body.no-scroll { overflow: hidden; }
 .mycard__credit {
   font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em;
   color: var(--text-3); margin-top: 14px;
+}
+
+/* ---------- QSL carousel: card proportions, not photo proportions ---------- */
+.carousel--qsl .carousel__stage { aspect-ratio: 11 / 7; }
+@media (max-width: 640px) { .carousel--qsl .carousel__stage { aspect-ratio: 11 / 8; } }
+
+/* ---------- Linked chips ---------- */
+a.chip { text-decoration: none; transition: color .18s, border-color .18s; }
+a.chip:hover { color: var(--amber); border-color: var(--amber-dim); text-decoration: none; }
+
+/* ---------- Gear cards that link out ---------- */
+.gear__name a { color: inherit; text-decoration: none; }
+.gear__name a:hover { color: var(--amber); text-decoration: none; }
+.gear__name a::after {
+  content: "↗"; font-size: .72em; margin-left: .38em;
+  color: var(--text-3); vertical-align: super;
+}
+.gear__name a:hover::after { color: var(--amber); }
+
+/* ---------- Historic park list ---------- */
+.parklist {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 8px 18px;
+}
+.parklist li {
+  display: flex; align-items: baseline; gap: 11px;
+  font-size: .9rem; color: var(--text-2);
+  padding: 7px 0; border-bottom: 1px dashed var(--line-soft);
+}
+.parkref {
+  font-family: var(--font-mono); font-size: .76rem; flex-shrink: 0;
+  color: var(--cyan); background: color-mix(in srgb, var(--cyan) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cyan) 24%, transparent);
+  padding: 2px 7px; border-radius: 5px;
+}
+
+/* ---------- Video facade ---------- */
+.videobox {
+  position: relative; aspect-ratio: 16 / 9;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; background: var(--panel);
+}
+.videobox iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.videobox__facade {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; cursor: pointer; padding: 24px; text-align: center;
+  border: 0; color: var(--text);
+  background:
+    radial-gradient(720px 340px at 50% 42%, color-mix(in srgb, var(--amber) 15%, transparent), transparent 66%),
+    var(--panel);
+  transition: background .25s;
+}
+.videobox__facade:hover { background: radial-gradient(720px 340px at 50% 42%, color-mix(in srgb, var(--amber) 24%, transparent), transparent 66%), var(--panel); }
+
+.videobox__play {
+  width: 66px; height: 66px; border-radius: 50%;
+  display: grid; place-items: center; flex-shrink: 0;
+  background: linear-gradient(150deg, var(--amber), #ff9a3c);
+  color: #17110a;
+  box-shadow: 0 12px 34px -10px color-mix(in srgb, var(--amber) 80%, transparent);
+  transition: transform .22s cubic-bezier(.22,1,.36,1);
+}
+.videobox__facade:hover .videobox__play { transform: scale(1.09); }
+.videobox__play svg { width: 27px; height: 27px; margin-left: 3px; }
+
+.videobox__txt { display: block; }
+.videobox__title { display: block; font-size: 1.16rem; font-weight: 600; }
+.videobox__sub {
+  display: block; margin-top: 6px;
+  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .06em; color: var(--text-3);
 }

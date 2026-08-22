@@ -264,5 +264,27 @@
       });
   }
 
+  /* ---------- Video facade ----------
+     The YouTube iframe is inserted only on click: no third-party requests,
+     no cookies, and no ~1 MB player download unless someone wants to watch. */
+  var videoBox = document.getElementById('videoBox');
+  if (videoBox) {
+    var facade = videoBox.querySelector('.videobox__facade');
+    if (facade) {
+      facade.addEventListener('click', function () {
+        var list = videoBox.getAttribute('data-playlist');
+        var fr = document.createElement('iframe');
+        fr.src = 'https://www.youtube-nocookie.com/embed/videoseries?list=' +
+                 encodeURIComponent(list) + '&autoplay=1&rel=0';
+        fr.title = 'POTA activations playlist';
+        fr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+        fr.allowFullscreen = true;
+        fr.setAttribute('loading', 'lazy');
+        videoBox.innerHTML = '';
+        videoBox.appendChild(fr);
+      });
+    }
+  }
+
   loadPota();
 })();
